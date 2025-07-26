@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Catagory, ProductImage
+from .models import Product, Category, ProductImage
 
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
@@ -17,8 +17,8 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'price', 'category', 'is_active', 'modified_at')
     search_fields = ('title', 'description')
     inlines = [ProductImageInline]
-    list_filter = ('catagory', 'is_active')
+    list_filter = ('category', 'is_active')
 
-admin.site.register(Catagory, CategoryAdmin)
+admin.site.register(Category, CategoryAdmin)
 
 

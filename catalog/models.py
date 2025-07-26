@@ -18,13 +18,13 @@ class Product(timeStampedMixin):
     stock = models.PositiveIntegerField()
     category = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
     
 
-class Catagory(timeStampedMixin):
+class Category(timeStampedMixin):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     parant = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
@@ -38,14 +38,14 @@ class Catagory(timeStampedMixin):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('cataloge:category_detail', kwargs={'slug': self.slug})
+        return reverse('catalog:category_detail', kwargs={'slug': self.slug})
     
 class ProductImage(timeStampedMixin):
     product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='product_images/')
     alt_text = models.CharField(max_length=255, blank=True, null=True)
     is_primary = models.BooleanField(default=False)
-    
+
     class Meta:
         ordering = ['-is_primary', 'id'] 
 
