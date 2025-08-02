@@ -1,14 +1,22 @@
 {% extends "base.html" %}
-{% block content %}
+{% load static %}
+{% block title %}All products – My Shop{% endblock %}
 
-<ul>
-    {% for product in object_list %}
-        <li>
-            <a href="{% product.get_absolute_url %}">{{ product.title }}</a>
-            - {{ product.price }} USD
-        </li> 
-    {% empty %}
-        <p>No products available.</p>    
-    {% endfor %}
+{% block content %}
+<h1>All Products</h1>
+<ul class="products">
+  {% for product in object_list %}
+    <li class="product-card">
+      {% if product.images.first %}
+        <img src="{{ product.images.first.image.url }}" alt="{{ product.images.first.alt_text }}">
+      {% else %}
+        <img src="{% static 'img/placeholder.png' %}" alt="">
+      {% endif %}
+      <a href="{{ product.get_absolute_url }}">{{ product.title }}</a><br>
+      ${{ product.price }}
+    </li>
+  {% empty %}
+    <p>No products yet.</p>
+  {% endfor %}
 </ul>
 {% endblock %}
