@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 class CustomLoginView(LoginView):
-    template_name = 'account/login.html'
+    template_name = 'accounts/login.html'
     redirect_authenticated_user = True
 
     def get_success_url(self):
@@ -25,7 +25,7 @@ def register(request):
             return redirect("login")
     else:
         form = UserCreationForm()
-    return render(request, "account/register.html", {"form": form})
+    return render(request, "accounts/register.html", {"form": form})
 
 def logout_view(request):
     logout(request)
@@ -37,7 +37,7 @@ def profile_view(request):
     profile= request.user.profile
     addresses = request.user.addresses.all()
     orders = request.user.orders.all() [:5]
-    return render(request, "account/profile.html", {
+    return render(request, "accounts/profile.html", {
         "profile": profile,
         "addresses": addresses,
         "orders": orders
