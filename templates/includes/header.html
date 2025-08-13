@@ -1,6 +1,21 @@
-<header class="site-header">
-    <nav>
-      <a href="{% url 'catalog:index' %}">Home</a> |
-      <a href="{% url 'admin:index' %}">Admin</a>
-    </nav>
-  </header>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a class="navbar-brand mb-0 h1" href="{% url 'catalog:index' %}">HOME</a>
+    <div class="d-flex gap-3">
+      <a class="navbar-brand" href="{% url 'catalog:index' %}">HOME</a>
+      <a class="navbar-brand" href="{% url 'catalog:index' %}">SHOP</a>
+      <a class="navbar-brand" href="{% url 'cart:detail' %}">CART ({{ cart|length }})</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container text-center py-3">
+  <img src="{% static 'images/logo.png' %}" alt="Grains of Glory" style="max-height: 100px;">
+  <div class="d-flex justify-content-center gap-4 mt-3 flex-wrap">
+    <a href="#">RECIPES</a>
+    <a href="#">CONTACT</a>
+    <a href="#">OUR STORY</a>
+    <a href="#">BLOG/NEWS</a>
+    <a href="#">DONATION</a>
+  </div>
+</div>
