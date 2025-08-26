@@ -1,3 +1,4 @@
+from django.views.generic import ListView, DetailView
 from django.shortcuts import render
 from .models import BlogPost
 
@@ -16,5 +17,4 @@ class BlogDetailView(DetailView):
     def get_queryset(self):
         qs = super().get_queryset()
         return qs.filter(is_published=True)
-    
     
