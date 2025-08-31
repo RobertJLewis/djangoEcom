@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Contact Us – G.O. Glory{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/contact.css' %}">{% endblock %}
+
+{% block content %}
+<main class="contact-section container py-5">
+  <h2 class="mb-4">CONTACT US</h2>
+  <p class="intro-text mb-4">
+    Millets are cereal crops and small seed grasses widely used across Africa and Asia…
+  </p>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label" for="{{ form.name.id_for_label }}">NAME</label>
+      {{ form.name }}
+      {% if form.name.errors %}<div class="text-danger small">{{ form.name.errors|striptags }}</div>{% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="{{ form.email.id_for_label }}">EMAIL</label>
+      {{ form.email }}
+      {% if form.email.errors %}<div class="text-danger small">{{ form.email.errors|striptags }}</div>{% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="{{ form.enquiry.id_for_label }}">ENQUIRY</label>
+      {{ form.enquiry }}
+      {% if form.enquiry.errors %}<div class="text-danger small">{{ form.enquiry.errors|striptags }}</div>{% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-dark">SUBMIT FORM</button>
+  </form>
+</main>
+{% endblock %}

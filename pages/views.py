@@ -22,5 +22,23 @@ class ContactView(FormView):
         return initial
 
      
-        
-    # not finished!!
+    def form_valid(self, form):
+        msg: ContactMessage = form.save(commit=False)
+        if self.request.user.is_authenticated:
+            msg.user = self.request.user
+        msg.ip_address = self.request.META.get('REMOTE_ADDR')
+        msg.save() 
+
+        subject = f"Contact form: {msg.name} <{msg.email}>" 
+        body = strip_tags(msg.enquiry)
+
+        mail_admins(subject, body, fail_silently=True)
+        messages.success(self.request, "Thanks! We have recieved your message")
+        return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        messages.error(self.request, "Please fix the errors below and resubmit")
+        return super().form_invalid(form)
+
+class ContactThanksView(TemplateView):
+    template_name = 'pages/contact_thanks.html'
