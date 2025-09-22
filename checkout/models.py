@@ -6,7 +6,7 @@ from django.conf import settings
 
 from django_countries.fields import CountryField
 
-from catalog.models import Product  # Updated to match your app
+from products.models import Product  # Updated to match your app
 from accounts.models import User  # Updated to match your project
 
 

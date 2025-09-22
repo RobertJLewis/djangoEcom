@@ -1,0 +1,86 @@
+[
+    {
+        "pk": 1,
+        "model": "products.product",
+        "fields": {
+            "sku": "FM001",
+            "name": "Foxtail Millet",
+            "description": "High-quality Foxtail Millet, perfect for healthy meals and gluten-free diets.",
+            "price": 5.99,
+            "category": 1,
+            "rating": 4.8,
+            "image_url": "https://example.com/images/foxtail_millet.jpg",
+            "image": "foxtail_millet.jpg"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "products.product",
+        "fields": {
+            "sku": "PM002",
+            "name": "Pearl Millet",
+            "description": "Nutritious Pearl Millet ideal for porridge, baking, and savory dishes.",
+            "price": 6.49,
+            "category": 2,
+            "rating": 4.7,
+            "image_url": "https://example.com/images/pearl_millet.jpg",
+            "image": "pearl_millet.jpg"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "products.product",
+        "fields": {
+            "sku": "RM003",
+            "name": "Finger Millet",
+            "description": "Rich in calcium, our Finger Millet is perfect for traditional recipes and healthy snacks.",
+            "price": 7.25,
+            "category": 3,
+            "rating": 4.9,
+            "image_url": "https://example.com/images/finger_millet.jpg",
+            "image": "finger_millet.jpg"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "products.product",
+        "fields": {
+            "sku": "LM004",
+            "name": "Little Millet",
+            "description": "Organic Little Millet, great for salads, soups, and light meals.",
+            "price": 5.75,
+            "category": 4,
+            "rating": 4.6,
+            "image_url": "https://example.com/images/little_millet.jpg",
+            "image": "little_millet.jpg"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "products.product",
+        "fields": {
+            "sku": "KM005",
+            "name": "Kodo Millet",
+            "description": "Premium Kodo Millet, rich in protein and perfect for weight management diets.",
+            "price": 6.99,
+            "category": 5,
+            "rating": 4.7,
+            "image_url": "https://example.com/images/kodo_millet.jpg",
+            "image": "kodo_millet.jpg"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "products.product",
+        "fields": {
+            "sku": "BM006",
+            "name": "Barnyard Millet",
+            "description": "Healthy Barnyard Millet, ideal for fasting recipes and wholesome meals.",
+            "price": 5.50,
+            "category": 6,
+            "rating": 4.5,
+            "image_url": "https://example.com/images/barnyard_millet.jpg",
+            "image": "barnyard_millet.jpg"
+        }
+    }
+]

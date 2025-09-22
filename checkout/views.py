@@ -7,7 +7,7 @@ from django.conf import settings
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
-from catalog.models import Product
+from products.models import Product
 from accounts.models import User
 from accounts.forms import UserProfileForm  # Adjust if you store extra info differently
 from bag.contexts import bag_contents

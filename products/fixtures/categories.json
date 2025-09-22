@@ -1,0 +1,8 @@
+[
+    { "pk": 1, "model": "products.category", "fields": { "name": "foxtail_millet", "friendly_name": "Foxtail Millet" } },
+    { "pk": 2, "model": "products.category", "fields": { "name": "pearl_millet", "friendly_name": "Pearl Millet" } },
+    { "pk": 3, "model": "products.category", "fields": { "name": "finger_millet", "friendly_name": "Finger Millet" } },
+    { "pk": 4, "model": "products.category", "fields": { "name": "little_millet", "friendly_name": "Little Millet" } },
+    { "pk": 5, "model": "products.category", "fields": { "name": "kodo_millet", "friendly_name": "Kodo Millet" } },
+    { "pk": 6, "model": "products.category", "fields": { "name": "barnyard_millet", "friendly_name": "Barnyard Millet" } }
+]
