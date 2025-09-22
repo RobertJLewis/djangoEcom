@@ -1,0 +1,1 @@
+Grains of Glory Confirmation for Order Number {{ order.order_number }}
