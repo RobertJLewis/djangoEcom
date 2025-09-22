@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from decimal import Decimal
 import stripe 
 
-from cart.cart import Cart
+from checkout.cart import Cart
 from .models import Order, OrderItem
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
