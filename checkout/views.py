@@ -4,11 +4,12 @@ from django.shortcuts import (
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from profiles.forms import UserProfileForm
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 from products.models import Product
-from django.contrib.auth.models import User
+from profiles.models import UserProfile
 from bag.contexts import bag_contents
 
 import stripe
@@ -17,6 +18,7 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
+    """Cache checkout data for Stripe PaymentIntent."""
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -32,6 +34,7 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """Handle the checkout process."""
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -55,6 +58,15 @@ def checkout(request):
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
+
+            # Link order to user_profile if authenticated
+            if request.user.is_authenticated:
+                try:
+                    user_profile = request.user.userprofile
+                except UserProfile.DoesNotExist:
+                    user_profile = UserProfile.objects.create(user=request.user)
+                order.user_profile = user_profile
+
             order.save()
 
             for item_id, quantity in bag.items():
@@ -69,8 +81,8 @@ def checkout(request):
                 except Product.DoesNotExist:
                     messages.error(request, (
                         "One of the products in your bag wasn't found in our database. "
-                        "Please call us for assistance!")
-                    )
+                        "Please call us for assistance!"
+                    ))
                     order.delete()
                     return redirect(reverse('view_bag'))
 
@@ -117,15 +129,20 @@ def checkout(request):
 
 
 def checkout_success(request, order_number):
-    """
-    Handle successful checkouts
-    """
+    """Handle successful checkouts."""
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
     if request.user.is_authenticated:
-        order.user = request.user
-        order.save()
+        try:
+            user_profile = request.user.userprofile
+        except UserProfile.DoesNotExist:
+            user_profile = UserProfile.objects.create(user=request.user)
+
+        # Link order to user's profile if not already linked
+        if order.user_profile is None:
+            order.user_profile = user_profile
+            order.save()
 
         # Optionally save default info for the user
         if save_info:
@@ -138,15 +155,15 @@ def checkout_success(request, order_number):
                 'default_street_address2': order.street_address2,
                 'default_county': order.county,
             }
-            try:
-                user_profile_form = UserProfileForm(profile_data, instance=request.user.profile)
-                if user_profile_form.is_valid():
-                    user_profile_form.save()
-            except Exception:
-                # Skip if user profile doesn't exist
-                pass
+            user_profile_form = UserProfileForm(profile_data, instance=user_profile)
+            if user_profile_form.is_valid():
+                user_profile_form.save()
 
-    messages.success(request, f'Order successfully processed! Your order number is {order_number}. A confirmation email will be sent to {order.email}.')
+    messages.success(
+        request,
+        f'Order successfully processed! Your order number is {order_number}. '
+        f'A confirmation email will be sent to {order.email}.'
+    )
 
     if 'bag' in request.session:
         del request.session['bag']

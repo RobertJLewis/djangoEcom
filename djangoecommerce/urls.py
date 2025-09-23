@@ -27,8 +27,7 @@ urlpatterns = [
     path('products/', include('products.urls', namespace='products')),
     path('bag/', include('bag.urls', namespace='bag')),
     path('checkout/', include('checkout.urls', namespace='checkout')),
-    path('profile/', include('profiles.urls', namespace='profiles')),
-]
+    path('profile/', include('profiles.urls', namespace='profiles')),]
 
 # Update your 404 handler to use 'home' or another existing app
 handler404 = 'home.views.handler404'
