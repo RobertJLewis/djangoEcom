@@ -1,5 +1,5 @@
 import uuid
-
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
@@ -7,7 +7,6 @@ from django.conf import settings
 from django_countries.fields import CountryField
 
 from products.models import Product  # Updated to match your app
-from accounts.models import User  # Updated to match your project
 
 
 class Order(models.Model):

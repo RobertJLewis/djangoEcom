@@ -8,8 +8,7 @@ from django.conf import settings
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 from products.models import Product
-from accounts.models import User
-from accounts.forms import UserProfileForm  # Adjust if you store extra info differently
+from django.contrib.auth.models import User
 from bag.contexts import bag_contents
 
 import stripe

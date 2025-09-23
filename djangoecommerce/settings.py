@@ -46,13 +46,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cart',
-    'catalog',
-    'accounts',
-    'payments',
-    'orders',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'home',
+    'products',
+    'bag',
+    'checkout',
+    'profiles',
     'blog',
-    'pages',
 
     # Other
     'crispy_forms',
@@ -68,6 +72,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    #allauth - debugging 
+    'allauth.account.middleware.AccountMiddleware', 
+
 ]
 
 ROOT_URLCONF = 'djangoecommerce.urls'
@@ -178,8 +186,6 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-AUTH_USER_MODEL = "accounts.User"
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'

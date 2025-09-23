@@ -1,6 +1,7 @@
-from django.apps import AppConfig
+from django import forms
+from .models import Product  # Make sure you have a Product model
 
-
-class ProductsConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'products'
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'price']  # adjust to your Product model fields

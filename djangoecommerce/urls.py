@@ -18,19 +18,21 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+# app_name = 'home'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls', namespace='accounts')),
-    path('catalog/', include('catalog.urls', namespace='catalog')),
     path('blog/', include('blog.urls', namespace='blog')),
-    path('', include('pages.urls', namespace='pages')),
+    path('', include('home.urls', namespace='home')),  # updated
     path('products/', include('products.urls', namespace='products')),
     path('bag/', include('bag.urls', namespace='bag')),
     path('checkout/', include('checkout.urls', namespace='checkout')),
     path('profile/', include('profiles.urls', namespace='profiles')),
 ]
 
-handler404 = 'pages.views.handler404'  # update to your 404 view path
+# Update your 404 handler to use 'home' or another existing app
+handler404 = 'home.views.handler404'
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
