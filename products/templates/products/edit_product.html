@@ -20,23 +20,27 @@
                 <hr>
             </div>
         </div>
-
+{% load crispy_forms_tags %}
         <div class="row">
             <div class="col-12 col-md-6">
-                <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% for field in form %}
-                        {% if field.name != 'image' %}
-                            {{ field | as_crispy_field }}
-                        {% else %}
-                            {{ field }}
-                        {% endif %}
-                    {% endfor %}
-                    <div class="text-right">
-                        <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
-                        <button class="btn btn-black rounded-0" type="submit">Update Product</button>
-                    </div>
-                </form>
+                <form method="post"
+                action="{% url 'products:edit_product' product_id=form.instance.id %}"
+                class="form mb-2"
+                enctype="multipart/form-data">
+            {% csrf_token %}
+            {# Render all fields with crispy, except image which you want raw #}
+            {% for field in form %}
+              {% if field.name != 'image' %}
+                {{ field|as_crispy_field }}
+              {% else %}
+                {{ field }}
+              {% endif %}
+            {% endfor %}
+            <div class="text-right mt-3">
+              <a class="btn btn-outline-dark rounded-0" href="{% url 'products:products' %}">Cancel</a>
+              <button class="btn btn-dark rounded-0" type="submit">Update Product</button>
+            </div>
+          </form>
             </div>            
         </div>
     </div>

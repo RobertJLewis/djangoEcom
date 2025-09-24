@@ -23,11 +23,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog')),
-    path('', include('home.urls', namespace='home')),  # updated
     path('products/', include('products.urls', namespace='products')),
     path('bag/', include('bag.urls', namespace='bag')),
     path('checkout/', include('checkout.urls', namespace='checkout')),
-    path('profile/', include('profiles.urls', namespace='profiles')),]
+    path('profile/', include('profiles.urls', namespace='profiles')),
+    path('', include('home.urls', namespace='home')),  # updated
+]
 
 # Update your 404 handler to use 'home' or another existing app
 handler404 = 'home.views.handler404'
