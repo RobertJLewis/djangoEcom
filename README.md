@@ -303,3 +303,11 @@ I would like to express my sincere gratitude to the following individuals and gr
   Heartfelt thanks to friends and family who tested the platform, provided honest feedback, and supported me during development. Your suggestions helped identify usability issues, improve the user experience, and ensure the site is intuitive and accessible for a wide audience.
 - **Open Source and Community Resources:**  
   Recognition to the authors and contributors of the tools, frameworks, and libraries used in this project, including Django, Bootstrap, Crispy Forms, PostgreSQL, and Font Awesome. Your work enabled the creation of a functional, responsive, and accessible e-commerce platform.
+
+
+
+
+
+
+
+---
