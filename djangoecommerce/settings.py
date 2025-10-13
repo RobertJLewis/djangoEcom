@@ -24,7 +24,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',  # VS Code preview
     'localhost',  # Stripe webhooks
     'django_ecommerce.herokuapp.com',  # Heroku (keep this for dev, if needed)
-    'ecommerce-grains-of-glory-13e8ed402ce5.herokuapp.com',  # Heroku URL (replace with your actual Heroku URL)
+    'https://ecommerce-grains-of-glory-13e8ed402ce5.herokuapp.com/',  # Heroku URL (replace with your actual Heroku URL)
 ]
 
 
