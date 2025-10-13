@@ -10,7 +10,9 @@ django-countries==7.6.1
 django-crispy-forms==2.4
 django-storages==1.14.6
 django-summernote==0.8.20.0
+gunicorn==23.0.0
 idna==3.11
+packaging==25.0
 pillow==11.3.0
 psycopg2==2.9.11
 requests==2.32.5
